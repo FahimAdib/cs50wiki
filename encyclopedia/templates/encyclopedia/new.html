@@ -1,0 +1,35 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Create new page
+{% endblock %}
+
+
+
+{% block body %}
+<h1> Create new page:</h1>
+
+<form action="{% url 'new' %}" method="post">
+    {% csrf_token %}
+    Entry title:
+    <br>
+    {{ newEntry.title }}
+    <br>
+    Description:
+    <br>
+    {{ newEntry.descr }}
+    <br>
+    <input type="submit" method="post"></input>
+
+</form>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li id="error" class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+{% endblock %}

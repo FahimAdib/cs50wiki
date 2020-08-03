@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block body %}
+
+{% if entry %}
+{{ entry|safe }}
+{% else %}
+This entry does not exist.
+{% endif %}
+
+<a href="./edit/">
+    <button type="button">Edit</button>
+</a>
+
+
+{% endblock %}
