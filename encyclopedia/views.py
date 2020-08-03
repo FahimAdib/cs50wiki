@@ -32,10 +32,21 @@ def index(request):
 
 
 def title(request, title):
+    request.session["sT"] = title
+    if not util.get_entry(title):
+        return HttpResponseRedirect("/error/")
 
     return render(request, "encyclopedia/entry.html", {
         "entry": markdown2.markdown(util.get_entry(title)),
         "title": title,
+        "form": query()
+    })
+
+
+def error(request):
+
+    return render(request, "encyclopedia/error.html", {
+        "title": request.session.get("sT"),
         "form": query()
     })
 
